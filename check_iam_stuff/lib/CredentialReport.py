@@ -26,9 +26,8 @@ class CredentialReport:
         response_list = response['Content'].splitlines()
 
         try:
-            f_user = open(self.path + '/user.csv', 'a+')
-            for row in response_list:
-                print(row.decode("utf-8"), file=f_user)
-            f_user.close()
+            with open(self.path + '/user.csv', 'a+') as f_user:
+                for row in response_list:
+                    print(row.decode("utf-8"), file=f_user)
         except Exception as e:
             print("Unexpected Exception: %s" % e)
